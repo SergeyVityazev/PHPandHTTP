@@ -1,3 +1,14 @@
+
+<?php
+
+if (!empty($_GET['name'])) {
+        header("Location:test.php?NumberTest=$_GET[name]");
+    }else{
+        header('HTTP/1.0 404 Not Found');
+}
+?>
+
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -19,7 +30,7 @@ if ($handle = opendir("tests/")) {
 }
 
 ?>
-<form enctype="multipart/form-data"  method="GET">
+<form enctype="multipart/form-data"  method="get">
     <?php
     foreach ($Testes as $key=>$value){
         ?>
@@ -30,21 +41,7 @@ if ($handle = opendir("tests/")) {
     <input type="submit" value="Выбрать" />
 </form >
 
-<?php
 
-if (!empty($_GET['name'])) {
-
-      session_start();
-      $_SESSION['name']=$_GET['name'];
-     /* $_SESSION['count']=$value;*/
-    $filename = "tests/".$_GET['name'];
-  if (file_exists($filename)) {
-    header('Location:test.php');
-  }else{
-      header('HTTP/1.0 404 Not Found');
-  }
-}
-?>
 
 </body>
 </html>
